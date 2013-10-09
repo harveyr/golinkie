@@ -33,7 +33,7 @@ func printColor(s string, color string) {
 func fetchHtml(inputUrl string) string {
 	parsedUrl, err := url.Parse(inputUrl)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to parse url: %s", inputUrl)
 	}
 	if !parsedUrl.IsAbs() {
 		log.Fatal("Url must be absolute")
@@ -50,7 +50,7 @@ func fetchHtml(inputUrl string) string {
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatalf("Failed to read response body")
+		log.Fatal("Failed to read response body")
 	}
 	return string(body)
 }
